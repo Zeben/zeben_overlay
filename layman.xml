@@ -1,16 +1,18 @@
 <repositories xmlns="" version="1.0">
-	<repo quality="experimental" status="unofficial">
-		<name>
-			<![CDATA[ zeben-overlay ]]>
-		</name>
-		<description lang="en">
-			<![CDATA[ Zeben overlay ]]>
-		</description>
-		<homepage>https://github.com/Zeben/zeben_overlay</homepage>
-		<owner type="person">
-			<email>skovorodker.rekdo@gmail.com</email>
-		</owner>
-		<source type="git">git://github.com/Zeben/zeben_overlay.git</source>
-
-	</repo>
+ <repo quality="experimental" status="unofficial">
+  <name>
+   <![CDATA[ zeben-overlay ]]>
+  </name>
+  <description lang="ru">
+   <![CDATA[ Zeben overlay ]]>
+  </description>
+  <homepage>https://github.com/Zeben/zeben_overlay</homepage>
+  <owner type="person">
+   <email>skovorodker.rekdo@gmail.com</email>
+   <name>
+    <![CDATA[ Maxim Logvinov ]]>
+   </name>
+  </owner>
+  <source type="git">git://github.com/Zeben/zeben_overlay.git</source>
+ </repo>
 </repositories>
