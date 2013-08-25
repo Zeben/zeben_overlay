@@ -48,6 +48,7 @@ DEPEND="dev-cpp/sparsehash
 		x11-libs/wxGTK[X]
 	)
 	amd64? ( media-gfx/nvidia-cg-toolkit[multilib]
+		app-emulation/emul-linux-x86-libpng-pcsx2
 		app-emulation/emul-linux-x86-baselibs
 		app-emulation/emul-linux-x86-opengl
 		app-emulation/emul-linux-x86-xlibs
@@ -55,6 +56,7 @@ DEPEND="dev-cpp/sparsehash
 		app-emulation/emul-linux-x86-sdl
 		app-emulation/emul-linux-x86-soundlibs
 		app-emulation/emul-linux-x86-wxGTK
+		app-emulation/emul-linux-x86-libsoundtouch
 		x11-libs/wxGTK[X]
 		media-libs/glew
 		media-libs/libsoundtouch
