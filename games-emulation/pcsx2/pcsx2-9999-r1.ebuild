@@ -57,7 +57,7 @@ DEPEND="dev-cpp/sparsehash
 		app-emulation/emul-linux-x86-soundlibs
 		app-emulation/emul-linux-x86-wxGTK
 		app-emulation/emul-linux-x86-libsoundtouch
-		x11-libs/wxGTK[X]
+		x11-libs/wxGTK[X,pch]
 		media-libs/glew
 		media-libs/libsoundtouch
 	)"
