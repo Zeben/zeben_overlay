@@ -1,0 +1,47 @@
+diff -r -c smartcam-1.4.0.orig/src/CommHandler.cpp smartcam-1.4.0/src/CommHandler.cpp
+*** smartcam-1.4.0.orig/src/CommHandler.cpp	2009-07-07 19:48:31.000000000 +0300
+--- smartcam-1.4.0/src/CommHandler.cpp	2013-08-26 04:56:00.006996317 +0300
+***************
+*** 151,160 ****
+  
+      // connect to the local SDP server, register the service record
+      sdpSession = sdp_connect(BDADDR_ANY, BDADDR_LOCAL, SDP_RETRY_IF_BUSY);
+!     err = sdp_record_register(sdpSession, sdpRecord, 0);
+!     if(err)
+!     {
+!         perror("sdp_record_register");
+      }
+  
+      // cleanup
+--- 151,164 ----
+  
+      // connect to the local SDP server, register the service record
+      sdpSession = sdp_connect(BDADDR_ANY, BDADDR_LOCAL, SDP_RETRY_IF_BUSY);
+!     if (sdpSession == NULL) {
+!       perror("sdp_connect");
+!     } else {  
+!       err = sdp_record_register(sdpSession, sdpRecord, 0);
+!       if(err)
+!       {
+! 	perror("sdp_record_register");
+!       }
+      }
+  
+      // cleanup
+***************
+*** 331,337 ****
+  
+  void CCommHandler::StopServer()
+  {
+!     if(sdpRecord != NULL)
+      {
+          sdp_record_unregister(sdpSession, sdpRecord);
+          sdpRecord = NULL;
+--- 335,341 ----
+  
+  void CCommHandler::StopServer()
+  {
+!     if(sdpRecord != NULL && sdpSession != NULL)
+      {
+          sdp_record_unregister(sdpSession, sdpRecord);
+          sdpRecord = NULL;

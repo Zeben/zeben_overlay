@@ -1,0 +1,20 @@
+ 
+--- smartcam-1.4.0.orig/driver_src/smartcam.c	2012-07-24 01:09:54.339092341 +0300
++++ smartcam-1.4.0/driver_src/smartcam.c	2012-07-24 01:11:44.225094171 +0300
+@@ -551,7 +551,6 @@
+ }
+ 
+ static const struct v4l2_file_operations smartcam_fops = {
+-	.owner		= THIS_MODULE,
+ 	.open           = smartcam_open,
+ 	.release        = smartcam_release,
+ 	.read           = smartcam_read,
+@@ -632,7 +631,5 @@
+ module_init(smartcam_init);
+ module_exit(smartcam_exit);
+ 
+-MODULE_DESCRIPTION("Smartphone Webcam");
+-MODULE_AUTHOR("Ionut Dediu");
+-MODULE_LICENSE("Dual BSD/GPL");
++
+ 
