@@ -1,4 +1,4 @@
-zeben_overlay
+zeben-overlay
 =============
 Hi! This is a simple overlay for best programs that wasn't be written into 
 official Gentoo Portage tree and official Layman's list.
