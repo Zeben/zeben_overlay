@@ -1,0 +1,57 @@
+--- smartcam-1.4.0.orig/driver_src/smartcam.c	2009-07-08 18:28:55.000000000 +0200
++++ smartcam-1.4.0/driver_src/smartcam.c	2010-12-29 10:35:32.032176378 +0100
+@@ -34,6 +34,7 @@
+ #include <media/v4l2-ioctl.h>
+ #include <media/v4l2-dev.h>
+ #include <linux/version.h>
++#include <linux/sched.h>
+ //#include <linux/videodev2.h>
+ 
+ #ifdef CONFIG_VIDEO_V4L1_COMPAT
+@@ -242,11 +243,7 @@
+ 		SCAM_MSG("vidioc_querybuf called - invalid buf type\n");
+ 		return -EINVAL;
+ 	}
+-	if(vidbuf->memory != V4L2_MEMORY_MMAP)
+-	{
+-		SCAM_MSG("vidioc_querybuf called - invalid memory type\n");
+-		return -EINVAL;
+-	}
++	vidbuf->memory = V4L2_MEMORY_MMAP;
+ 	vidbuf->length = SMARTCAM_BUFFER_SIZE;
+ 	vidbuf->bytesused = formats[format].sizeimage;
+ 	vidbuf->flags = V4L2_BUF_FLAG_MAPPED;
+@@ -538,7 +535,7 @@
+ {
+ 	int mask = (POLLOUT | POLLWRNORM);	/* writable */
+ 	if (last_read_frame != frame_sequence)
+-	    mask |= (POLLIN | POLLRDNORM)	/* readable */
++	    mask |= (POLLIN | POLLRDNORM);	/* readable */
+ 
+ 	SCAM_MSG("(%s) %s called\n", current->comm, __FUNCTION__);
+ 
+@@ -553,7 +550,7 @@
+ 	return 0;
+ }
+ 
+-static const struct file_operations smartcam_fops = {
++static const struct v4l2_file_operations smartcam_fops = {
+ 	.owner		= THIS_MODULE,
+ 	.open           = smartcam_open,
+ 	.release        = smartcam_release,
+@@ -562,7 +559,6 @@
+ 	.poll		= smartcam_poll,
+ 	.ioctl          = video_ioctl2, /* V4L2 ioctl handler */
+ 	.mmap		= smartcam_mmap,
+-	.llseek         = no_llseek,
+ };
+ 
+ static const struct v4l2_ioctl_ops smartcam_ioctl_ops = {
+@@ -594,6 +590,7 @@
+ #endif
+ };
+ 
++#define VID_TYPE_CAPTURE        1
+ static struct video_device smartcam_vid = {
+ 	.name		= "smartcam",
+ 	.vfl_type		= VID_TYPE_CAPTURE,
